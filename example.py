@@ -1,6 +1,8 @@
 # If you DO have the WhatsApp Desktop app installed
+
 from alright import WhatsApp
 
-msg = "hey I'm done its tuesday"
-messenger = WhatsApp()
-messenger.send_message1("255xxxxxxxxx", msg)
+msg = "E ai mano"
+wpp = WhatsApp()
+wpp.find_by_username('Ryan')
+wpp.send_message(msg)
