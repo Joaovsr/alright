@@ -1,34 +1,5 @@
 # [alright](#)
-
-<samp>
-
-Python wrapper for WhatsApp web made with selenium inspired by [PyWhatsApp](https://github.com/shauryauppal/PyWhatsapp)
-
-[![Downloads](https://pepy.tech/badge/alright)](https://pepy.tech/project/alright)
-[![Downloads](https://pepy.tech/badge/alright/month)](https://pepy.tech/project/alright)
-[![Downloads](https://pepy.tech/badge/alright/week)](https://pepy.tech/project/alright)
-
-[![Youtube demo](https://img.youtube.com/vi/yitQTt-NukM/0.jpg)](https://www.youtube.com/watch?v=yitQTt-NukM)
-
-## Why alright ?
-
-I was looking for a way to control and automate WhatsApp web with Python, I came across some very nice libaries and wrapper implementations including;
-
-- [pywhatkit](https://pypi.org/project/pywhatkit/)
-- [pywhatsapp](https://github.com/tax/pywhatsapp)
-- [PyWhatsapp](https://github.com/shauryauppal/PyWhatsapp)
-- [WebWhatsapp-Wrapper](https://github.com/mukulhase/WebWhatsapp-Wrapper)
-- and many others
-
-So I tried [**pywhatkit**](https://pypi.org/project/pywhatkit/), a really cool one well crafted to be used by others but its implementations require you to open a new browser tab and scan QR code everytime you send a message no matter if its to the same person, which was deal breaker for using it.
-
-Then I tried [**pywhatsapp**](https://github.com/tax/pywhatsapp) which is based on [yowsup](https://github.com/tgalal/yowsup) and thus requiring you to do some registration with yowsup before using it of which after bit of googling I got scared of having my number blocked, so I went for the next option
-
-I then went for [**WebWhatsapp-Wrapper**](https://github.com/mukulhase/WebWhatsapp-Wrapper), it has some good documentation and recent commits so I had hopes that it would work. But unfortunately it didn't for me, and after having a couple of errors I abandoned it to look for the next alternative.
-
-Which is [**PyWhatsapp**](https://github.com/shauryauppal/PyWhatsapp) by [shauryauppal](https://github.com/shauryauppal/). This was more of CLI tool than a wrapper which suprisingly worked well and it's approach allows you to dynamically send whatsapp message to unsaved contacts without rescanning QR-code everytime.
-
-So what I did is more of a refactoring of the implementation of that tool to be more of wrapper to easily allow people to run different scripts on top of it instead of just using it as a tool. I then thought of sharing the codebase to people who might have struggled to do this as I did.
+This is a Fork of [**alright**](https://github.com/Kalebu/alright)
 
 ## Getting started
 
@@ -36,23 +7,13 @@ You need to do a little bit of work to get [**alright**](https://github.com/Kale
 
 ### Installation
 
-We need to have alright installed on our machine to start using it which can either be done directly from **GitHub** or using **pip**.
-
-#### Installing directly
-
 You first need to clone or download the repo to your local directory and then move into the project directory as shown in the example and then run the command below;
 
 ```bash
-git clone https://github.com/Kalebu/alright
+git clone gh repo clone Joaovsr/alright
 cd alright
 alright > python setup.py install 
 ....
-```
-
-#### Installing from pip
-
-```bash
-pip install alright --upgrade
 ```
 
 ### Setting up Selenium
@@ -62,7 +23,6 @@ Underneath alright is **Selenium** which is what does all the automation work by
 ## What you can do with alright?
 
 - [Send Messages](#sending-messages)
-- [Send Messages1](#sending-messages1)
 - [Send Images](#sending-images)
 - [Send Videos](#sending-videos)
 - [Send Documents](#sending-documents)
@@ -120,50 +80,6 @@ To send a message with alright, you first need to target a specific user by usin
 >>> for message in messages:  
         messenger.send_message(message)    
 ```
-
-### Send Direct Message [NEW]
-
-> Recommended
-
-This is newly added method that makes it a bit simpler to send a direct message without having to do the **find_user** or **find_by_username**, It works well even if you have or not have WhatsApp installed on your machine. It assumes the number is a saved contact by default.
-
-```python
->>> messenger.send_direct_message(mobile, message, saved=True)
-```
-
-It does receive the following parameters;
-
-1. **mobile[str]** - The mobile number of the user you want to send the message to
-2. **message[str]** - The message you want to send
-3. **saved[bool]** - If you want to send to a saved contact or not, default is True
-
-Here is an example on how to use it;
-
-```python
->>> from alright import WhatsApp
->>> messenger = WhatsApp()
->>> >>> messenger.send_direct_message('25573652xxx', 'Hello')
-2022-08-14 17:27:57,264 - root -- [INFO] >> Message sent successfuly to 
-2022-08-14 17:27:57,264 - root -- [INFO] >> send_message() finished running!
->>> messenger.send_direct_message('25573652xxx', 'Who is This ?', False)
-2022-08-14 17:28:30,953 - root -- [INFO] >> Message sent successfuly to 255736524388
-2022-08-14 17:28:30,953 - root -- [INFO] >> send_message() finished running!
-```
-
-### Sending Messages1
-
-This Send Message does NOT find the user first like in the above Send Message, AND it does work even if you have the Desktop WhatsApp app installed.
-Include the **country code** in your number withour '+' symbol as shown in the example below;
-
-```python
->>> from alright import WhatsApp
->>> messenger = WhatsApp()
->>> messages = ['Morning my love', 'I wish you a good night!']
->>> mobNum = 27792346512
->>> for message in messages:  
-        messenger.send_message1(mobNum, msg)
-```
-
 #### Multiple numbers
 
 Here how to send a message to multiple users, Let's say we want to wish merry-x mass to all our contacts, our code is going to look like this;
@@ -280,34 +196,3 @@ You can sign out of an account that is currently saved
 >>> messenger = WhatsApp()
 >>> messenger.logout()
 ```
-
-Well! thats all for now from the package, to request new feature make an issue.
-
-## Contributions
-
-**alright** is an open-source package under **MIT** license, so contributions are warmly welcome whether that be a code , docs or typo just fork it.
-
-When contributing to code please make an issue for that before making your changes so that we can have a discussion before implementation.
-
-## Issues
-
-If you're facing any issue or difficulty with the usage of the package just raise one so that we can fix it as soon as possible.
-
-**Please, be as much comprehensive as possible!** Use as many screenshots and detailed description sets as possible; this will save us some time that we'd dedicate on asking you for "a more detailed descriptiton", and it'll make your request be solved faster.
-
-## Give it a star
-
-Was this useful to you ? Then give it a star so that more people can manke use of this.
-
-## Credits
-
-All the credits to:
-
-- [kalebu](https://github.com/kalebu)
-- [Eurico Nicacio](https://github.com/euriconicacio)
-- [Victor Daniel](https://github.com/vadolasi)
-- [Cornelius Mostert](https://github.com/theCJMan)
-- [shauryauppal](https://github.com/shauryauppal/)
-- and all the contributors
-
-</samp>
