@@ -269,7 +269,7 @@ class WhatsApp(object):
         xpath_map = {
             "image": "//*[@id='app']/div/div[2]/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[1]/div[3]/div/div/div/div[1]/div[1]/p",
             "video": "//*[@id='app']/div/div[2]/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[1]/div[3]/div/div/div[1]/div[1]/p",
-            "file":  "//*[@id='app']/div/div[2]/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[1]/div[3]/div/div/div[1]/div[1]/p",
+            "file":  "//*[@id='app']/div/div[2]/div[2]/div[2]/span/div/div/div/div[2]/div/div[1]/div[3]/div/div/div[1]/div[1]/p"
         }
         inp_xpath = xpath_map[media_type]
         input_box = self.wait.until(
