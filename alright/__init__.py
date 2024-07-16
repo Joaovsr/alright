@@ -114,18 +114,26 @@ class WhatsApp(object):
         nr_not_found_xpath = (
             '//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[2]/div/button'
         )
+        
+        nr_blocked = (
+            '_amm8'
+        )
 
         # If the number is NOT a WhatsApp number then there will be an OK Button, not the Message Textbox
         # Test for both situations -> find_elements returns a List
         ctrl_element = self.wait.until(
             lambda ctrl_self: ctrl_self.find_elements(By.XPATH, nr_not_found_xpath)
-            or ctrl_self.find_elements(By.XPATH, inp_xpath)
+            or ctrl_self.find_elements(By.XPATH, inp_xpath) or ctrl_self.find_elements(By.CLASS_NAME, nr_blocked)
         )
 
         find = True
         if ctrl_element[0].aria_role == "button":
             # Number Invalid
             find = False
+        elif 'Não é possível enviar uma mensagem ao contato bloqueado' in ctrl_element[0].text:
+            # Number blocked
+            find = False
+            print(ctrl_element[0].text)
 
         return find
 
